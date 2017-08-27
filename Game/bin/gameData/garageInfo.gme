@@ -1,0 +1,55 @@
+Helibase
+0:Base Defence:Build up:to level 35
+1:Install Wall:10x better armour
+2:Advanced Missiles:Increases weapons range
+5:APC:Can conquer a base (if it:has no defence)
+11:Tank Destroyer:Good against ground units:(tower cannot rotate)
+12:Battle Tank M1A5:Multi role tank:Well armoured
+28:Heavy tank:Multi role tank:Heavily armoured
+13:Howitzer:Basekiller:Good against base
+14:MLRS M270D:Missile tank:Good against air units
+20:2S20 MSTA-S:3x weapons range:if the target fires
+29:Comanche RAH66X:Stealth helicopter
+30:Spy helicopter:Light spy helicopter:Very weap weapons
+31:Apache AH64X:Anti tank helicopter:Good against ground units
+32:Cobra AH1X:Anti base helicopter:Good against bases
+33:Tiger AWX:Anti air helicopter:Good against air units
+34:Alligator KA-55:Battle helicopter:Good against aircraft
+35:Harrier:Multi role:Harrier
+Airbase
+36:A-10E Thunderbolt III:Anti ground aircraft:Good against ground units
+37:Su-25V Frogfoot:Anti base aircraft:Good against bases
+38:Su-47D Berkut:Anti helicopter aircraft:Good against helicopters
+39:F-22C Raptor:Anti aircraft aircraft:Good against aircraft
+40:Harrier:Multi role:Harrier
+41:AWAC:Jammer and Detector
+42:Tornado:Multi role jet
+Base
+0:Base Defence:Build up:to level 35
+1:Install Wall:10x better armour
+2:Advanced Missiles:Increases weapons range
+3:FAV:Light scout vehicle:Very cheap but very weak
+4:Humvee:Light scout vehicle:Cheap and weak
+5:APC:Can conquer a base (if it:has no defence)
+6:Light Tank:Light multi role tank
+7:Panhard Wheel Tank:Basekiller:Good against base
+8:Centaurio Wheel Tank:Light tank hunter:Good against ground units
+9:Missile Wheel Tank:Light anti-air vehicle:Good against air units
+10:Mobile Patriot:Stationary defence unit:with high weapons range
+11:Tank Destroyer:Good against ground units:(tower cannot rotate)
+12:Battle Tank M1A5:Multi role tank:Well armoured
+13:Howitzer:Basekiller:Good against base
+14:MLRS M270D:Missile tank:Good against air units
+15:Atlay:Good against weak:armoured ground units
+16:Jammer:Jams the area:(Fog of War)
+17:Type 99:Fast driving multi:role battle tank
+18:PL-01X:Stealth tank:Multi-role
+19:Detector:Can detect:stealth units
+20:2S20 MSTA-S:3x weapons range:if the target fires
+21:Leopard 2A9:Multi role tank:Low MP consumer
+22:Panstir-S2:Good against aircraft (high:Wap. range vs Air)
+23:JLVT:Scout vehicle
+24:SKOT Wheel Tank:Light multi role:wheel tank
+25:TanSAM:Good against helicopters (high:Weap. range vs Heli)
+26:Challenger 3:Battle tank:Fast build
+27:Leclerc T6 Antibasekiller:Good against Howitzer:Panhard and MSTA-S
