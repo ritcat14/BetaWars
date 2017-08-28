@@ -215,9 +215,7 @@ public class DatabaseManager implements Runnable {
 	        		+ Tools.createSQLFields(Arrays.copyOfRange(baseFields, 3, 4), sep, stringToken)
 	        		+ Tools.createSQLFields(Arrays.copyOfRange(baseFields, 4, 14), sep, intToken)
 	        		+ Tools.createSQLFields(Arrays.copyOfRange(baseFields, 14, baseFields.length), sep, booleanToken)
-	        		+ "PRIMARY KEY (BaseID),"
-	        		+ "FOREIGN KEY (PlayerID) REFERENCES Player(PlayerID)"
-	        		+ ")");
+	        		+ "PRIMARY KEY (BaseID))");
 	        System.out.println(sql);
 	        stmt.execute(sql);
 	        

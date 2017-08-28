@@ -18,6 +18,8 @@ import main.events.types.MouseDraggedEvent;
 import main.events.types.MouseMovedEvent;
 import main.events.types.MousePressedEvent;
 import main.events.types.MouseReleasedEvent;
+import main.graphics.MiniMap;
+import main.graphics.Panel;
 import main.objects.entities.Base;
 import main.objects.entities.Player;
 
@@ -26,7 +28,8 @@ public class Map implements EventListener {
 	public static final int TILE_WIDTH = 300;
 	public static final int TILE_HEIGHT = 100;
 	
-	private final int MAX_BASES; 
+	private final int MAX_BASES;
+	private int BASE_NUM;
 	
 	private TileManager tileManager;
 	private int tileNumX, tileNumY;
@@ -36,10 +39,11 @@ public class Map implements EventListener {
 	private int ID;
 	private Player player;
 	private ArrayList<Entity> entities = new ArrayList<Entity>();
-	private int mouseDX, mouseDY;
 	
 	private ArrayList<Integer> usedXCoords;
 	private ArrayList<Integer> usedYCoords;
+	
+	private MiniMap map;
 	
 	public Map(DatabaseManager dm, int ID, int x, int y) {
 		this.ID = ID;
@@ -64,13 +68,30 @@ public class Map implements EventListener {
 				tiles[x0 + y0 * tileNumX] = rowData[x0];
 			}
 		}
+		
+		map = new MiniMap();
+		
+		loadCoords();
 		generateBase();
+	}
+	
+	private void loadCoords() {
+		Object[][] baseData = dm.getData("Base");
+		for (Object[] data : baseData) {
+			int tempMapID = Integer.parseInt((String)data[2]);
+			if (tempMapID == ID) {
+				int baseX = Integer.parseInt((String)data[4]);
+				int baseY = Integer.parseInt((String)data[5]);
+				usedXCoords.add(baseX);
+				usedYCoords.add(baseY);
+			}
+		}
 	}
 	
 	public void setPlayer(Player player) {
 		if (this.player != null) entities.remove(player);
 		this.player = player;
-		entities.add(player);
+		add(player);
 	}
 	
 	public int getX() {
@@ -85,7 +106,13 @@ public class Map implements EventListener {
 		ID = iD;
 	}
 	
+	public void addBase(Base b, int x, int y) {
+		map.add(b, x, y);
+		entities.add(b);
+	}
+	
 	public void add(Entity e) {
+		if (e instanceof Base) BASE_NUM++;
 		entities.add(e);
 	}
 	
@@ -94,16 +121,17 @@ public class Map implements EventListener {
 	}
 	
 	public void createBase(Object[] data, DatabaseManager dm, int mapX, int mapY, String flag) {
-		entities.add(new Base(data, dm, mapX, mapY, flag));
+		addBase(new Base(data, dm, mapX, mapY, flag), mapX, mapY);
 	}
 	
 	private void generateBase() {
+		if (BASE_NUM > MAX_BASES) return;
 		String flag = "yellow";
 		int mapX = Tools.RandomNumber(0, (tileNumX * TILE_WIDTH) - 1500);
 		int mapY = Tools.RandomNumber(0, (tileNumY * TILE_HEIGHT) - 535);
 		for (int x = 0; x < usedXCoords.size(); x++) {
 			for (y = 0; y < usedYCoords.size(); y++) {
-				if (usedXCoords.get(x) == mapX && usedYCoords.get(y) == mapY) {
+				if (usedXCoords.get(x) == (mapX/TILE_WIDTH) && usedYCoords.get(y) == (mapY/TILE_HEIGHT)) {
 					generateBase();
 				}
 				Rectangle r = new Rectangle(usedXCoords.get(x), usedXCoords.get(y), 1500, 535);
@@ -112,10 +140,10 @@ public class Map implements EventListener {
 				}
 			}
 		}
-		usedXCoords.add(mapX);
-		usedYCoords.add(mapY);
 		mapX /= TILE_WIDTH;
 		mapY /= TILE_HEIGHT;
+		usedXCoords.add(mapX);
+		usedYCoords.add(mapY);
 		
 		// Generate database data
 		String[] data = {"0", "" + ID, "'Type1'", "" + mapX, "" + mapY, "1", "1", "1", "1", "0", "0", "0", "2", "false", "false", "false", "false", "false"};
@@ -123,13 +151,13 @@ public class Map implements EventListener {
 		dm.add("Base", data);
 		//load it into the new base
 		Object[][] baseData = dm.getData("Base");
-		entities.add(new Base(baseData[baseData.length - 1], dm, mapX, mapY, flag));
+		addBase(new Base(baseData[baseData.length - 1], dm, mapX, mapY, flag), mapX, mapY);
 	}
 	
 	public void clear() {
 		usedXCoords = new ArrayList<Integer>();
 		usedYCoords = new ArrayList<Integer>();
-		
+		map.clear();
 	}
 	
 	public Tile getTile(int x, int y) {
@@ -147,6 +175,7 @@ public class Map implements EventListener {
 			}
 			e.update();
 		}
+		map.update();
 	}
 	
 	public void render(Graphics g) {
@@ -161,11 +190,13 @@ public class Map implements EventListener {
 			}
 		}
 		for (Entity e : entities) e.render(g);
+		map.render(g);
 	}
 
 	@Override
 	public void onEvent(Event event) {
 		EventDispatcher dispatcher = new EventDispatcher(event);
+		map.onEvent(event);
 		dispatcher.dispatch(Event.Type.KEY_PRESSED, new EventHandler() {
 			public boolean onEvent(Event event) {
 				return player.keyPressed((KeyPressedEvent)event);

@@ -1,11 +1,11 @@
 ----------------------------------------------------------------
-Sun Aug 27 01:02:26 BST 2017:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.13.1.1 - (1765088): instance a816c00e-015e-20ff-29d2-00001d900180 
+Mon Aug 28 22:54:52 BST 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.13.1.1 - (1765088): instance a816c00e-015e-2ad7-1598-00001db53498 
 on database directory C:\Users\ritca\eclipse-workspace\Server\GameDB with class loader sun.misc.Launcher$AppClassLoader@73d16e93 
-Loaded from file:/C:/Users/ritca/eclipse-workspace/Game/lib/derby.jar
+Loaded from file://MEDIASERVER-PC/kris/Documents/GitHub/BetaWars/Game/lib/derby.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.8.0_141-b15
-user.dir=C:\Users\ritca\eclipse-workspace\Game
+user.dir=\\MEDIASERVER-PC\kris\Documents\GitHub\BetaWars\Game
 os.name=Windows 10
 os.arch=amd64
 os.version=10.0

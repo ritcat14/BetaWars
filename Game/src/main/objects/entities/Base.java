@@ -163,6 +163,10 @@ public class Base extends Entity implements EventListener {
 		}
 	}
 	
+	public Flag getFlag() {
+		return flag;
+	}
+	
 	@Override
 	public void render(Graphics g) {
 		super.render(g);

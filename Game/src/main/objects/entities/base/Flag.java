@@ -11,6 +11,7 @@ public class Flag extends AnimatedEntity {
 
 	private BufferedImage pole;
 	private int posX, posY, poleX, poleY, poleX2, poleY2;
+	private String color;
 	
 	public Flag(int x, int y, int poleX, int poleY, String col, int start) {
 		super(x, y, Tools.splitImage("/entities/base/" + col + "Flag", 34, 18), start, 5);
@@ -19,6 +20,11 @@ public class Flag extends AnimatedEntity {
 		posY = y;
 		this.poleX = poleX2 = poleX;
 		this.poleY = poleY2 = poleY;
+		this.color = col;
+	}
+	
+	public String getColor() {
+		return color;
 	}
 	
 	@Override

@@ -119,7 +119,7 @@ public class Game extends State {
 			}
 		};
 		
-		resPanel = new Panel(0, 0, 490, 50, Tools.getImage("/game/menuBackground"));
+		resPanel = new Panel(0, 0, 490, 50, Tools.getImage("/game/background"));
 		resPanel.add(concrete);
 		resPanel.add(steel);
 		resPanel.add(carbon);

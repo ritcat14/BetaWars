@@ -14,7 +14,7 @@ import javax.imageio.ImageIO;
 public abstract class Tools {
 	
 	public static int RandomNumber(int min, int max) {
-		Random r = new Random(1202348283);
+		Random r = new Random();
 		return r.nextInt((max - min) + 1) + min;
 	}
 	
