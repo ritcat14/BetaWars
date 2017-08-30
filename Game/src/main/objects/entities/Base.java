@@ -21,18 +21,21 @@ public class Base extends Entity implements EventListener {
 	private int xPos, yPos;
 	private Object[] data;
 	private DatabaseManager dm;
+	private int mapX, mapY;
 	
 	private Garage garage;
 	private Hangar hanger;
 	private Flag flag;
 	private Label nameLabel;
-	
+	private Wall wall;
+
+	private ArrayList<Defence> defence = new ArrayList<Defence>();
 	private ArrayList<Entity> entities = new ArrayList<Entity>();
 	
 	private final int playerID, mapID, baseID;
 	
 	public Base(Object[] data, DatabaseManager dm, int mapX, int mapY, String flag) {
-		super((mapX + (Integer.parseInt((String)data[4]) * Map.TILE_WIDTH)), (mapY + (Integer.parseInt((String)data[5]) * Map.TILE_HEIGHT)),
+		super(((-(mapX * Map.TILE_WIDTH)) + (Integer.parseInt((String)data[4]) * Map.TILE_WIDTH)), ((-(mapY * Map.TILE_HEIGHT)) + (Integer.parseInt((String)data[5]) * Map.TILE_HEIGHT)),
 				Tools.getImage("/entities/base/" + ((((String)data[3]).equals("Homebase") ? "Type1" : (String)data[3]))));
 		this.dm = dm;
 		this.data = data;
@@ -43,10 +46,25 @@ public class Base extends Entity implements EventListener {
 		this.yPos = Integer.parseInt((String)data[5]) * Map.TILE_HEIGHT;
 		this.data = data;
 		this.type = ((String)data[3]).equals("Homebase") ? "Type1" : (String)data[3]; // Type1, Type2, Helibase, Airbase
+		this.mapX = mapX;
+		this.mapY = mapY;
+		int defenceLevel = Integer.parseInt((String)data[13]);
+		int x1 = 0;
+		int y1 = 0;
+		int left = defenceLevel / 2;
+		int right = defenceLevel - left;
+		int dec = -7;
+		for (int i = 0; i < right; i++) {
+			defence.add(new Defence(this.x + 310 + (45 * i), this.y + 380 - ((i % 2 == 0 ? dec ++ : dec) * i)));
+		}
+		dec = 15;
+		for (int i = 0; i < left; i++) {
+			defence.add(new Defence(this.x + 215 - (25 * i), this.y + 350 - ((dec) * i)));
+		}
 		
 		setup(flag);
 		
-		entities.add(new Wall(this.x, this.y, this.type));
+		entities.add(wall = new Wall(this.x, this.y, this.type));
 	}
 
 	private void setup(String flag) {
@@ -111,7 +129,7 @@ public class Base extends Entity implements EventListener {
 	@Override
 	public void update() {
 		for (Entity e : entities) {
-			if (e.equals(garage) || e.equals(hanger) || e.equals(flag)) continue;
+			if (e.equals(garage) || e.equals(hanger) || e.equals(flag) || e.equals(wall)) continue;
 			e.update();
 		}
 		garage.update();
@@ -125,6 +143,8 @@ public class Base extends Entity implements EventListener {
 			}
 		}
 		if (nameLabel != null) nameLabel.update();
+		for (Defence d : defence) d.update();
+		wall.update();
 	}
 	
 	public boolean isProducing() {
@@ -167,16 +187,26 @@ public class Base extends Entity implements EventListener {
 		return flag;
 	}
 	
+	public int getMapX() {
+		return mapX;
+	}
+	
+	public int getMapY() {
+		return mapY;
+	}
+	
 	@Override
 	public void render(Graphics g) {
 		super.render(g);
 		for (Entity e : entities) {
-			if (e.equals(garage) || e.equals(hanger) || e.equals(flag)) continue;
+			if (e.equals(garage) || e.equals(hanger) || e.equals(flag) || e.equals(wall)) continue;
 			e.render(g);
 		}
 		garage.render(g);
 		if (hanger != null) hanger.render(g);
 		flag.render(g);
+		for (Defence d : defence) d.render(g);
+		wall.render(g);
 		if (nameLabel != null) nameLabel.render(g);
 		garage.getBox().render(g);
 	}
@@ -186,6 +216,7 @@ public class Base extends Entity implements EventListener {
 		super.setX(x + xPos);
 		for (Entity e : entities) e.setX(x + xPos);
 		if (nameLabel != null && garage != null) nameLabel.setPosition(garage.getX(), garage.getY());
+		for (Defence d : defence) d.setX(x + xPos);
 	}
 	
 	@Override
@@ -193,6 +224,7 @@ public class Base extends Entity implements EventListener {
 		super.setY(y + yPos);
 		for (Entity e : entities) e.setY(y + yPos);
 		if (nameLabel != null && garage != null) nameLabel.setPosition(garage.getX(), garage.getY());
+		for (Defence d : defence) d.setY(y + yPos);
 	}
 
 	@Override

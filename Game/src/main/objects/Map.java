@@ -69,7 +69,7 @@ public class Map implements EventListener {
 			}
 		}
 		
-		map = new MiniMap();
+		map = new MiniMap(player);
 		
 		loadCoords();
 		generateBase();
@@ -92,6 +92,7 @@ public class Map implements EventListener {
 		if (this.player != null) entities.remove(player);
 		this.player = player;
 		add(player);
+		map.setPlayer(player);
 	}
 	
 	public int getX() {
@@ -106,22 +107,21 @@ public class Map implements EventListener {
 		ID = iD;
 	}
 	
-	public void addBase(Base b, int x, int y) {
-		map.add(b, x, y);
+	public void addBase(Base b) {
+		map.add(b);
 		entities.add(b);
 	}
 	
 	public void add(Entity e) {
-		if (e instanceof Base) BASE_NUM++;
+		if (e instanceof Base) {
+			BASE_NUM++;
+			addBase((Base)e);
+		}
 		entities.add(e);
 	}
 	
-	public void add(ArrayList<Entity> e) {
-		entities.addAll(e);
-	}
-	
 	public void createBase(Object[] data, DatabaseManager dm, int mapX, int mapY, String flag) {
-		addBase(new Base(data, dm, mapX, mapY, flag), mapX, mapY);
+		add(new Base(data, dm, mapX, mapY, flag));
 	}
 	
 	private void generateBase() {
@@ -151,7 +151,7 @@ public class Map implements EventListener {
 		dm.add("Base", data);
 		//load it into the new base
 		Object[][] baseData = dm.getData("Base");
-		addBase(new Base(baseData[baseData.length - 1], dm, mapX, mapY, flag), mapX, mapY);
+		add(new Base(baseData[baseData.length - 1], dm, mapX, mapY, flag));
 	}
 	
 	public void clear() {
@@ -191,6 +191,7 @@ public class Map implements EventListener {
 		}
 		for (Entity e : entities) e.render(g);
 		map.render(g);
+		map.drawPointer(g, -(player.getXa() / 100), -(player.getYa() / 100));
 	}
 
 	@Override

@@ -58,6 +58,14 @@ public class Player extends Entity {
 		return true;
 	}
 	
+	public void setXa(int xa) {
+		this.xa = xa;
+	}
+	
+	public void setYa(int ya) {
+		this.ya = ya;
+	}
+	
 	public boolean keyPressed(KeyPressedEvent e) {
 		switch(e.getKey()) {
 		case KeyEvent.VK_UP:

@@ -202,6 +202,10 @@ public class DatabaseManager implements Runnable {
 			   }
 			   rows.add(columnValues);
 			}
+		} catch (SQLNonTransientConnectionException ex) {
+			closeDatabase();
+			openDatabase();
+			return getData(table);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

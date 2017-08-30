@@ -157,7 +157,7 @@ public class Game extends State {
 		String[] bdata = {"" + ID, "1", "'Homebase'", "38", "12", "1", "1", "1", "1", "0", "0", "0", "2", "false", "false", "false", "false", "false"};
 		databaseManager.add("Base", bdata);
 		baseData = databaseManager.getData("Base");
-		map.createBase(baseData[baseData.length - 1], databaseManager, -(38 * Map.TILE_WIDTH), -(12 * Map.TILE_HEIGHT), "green");
+		map.createBase(baseData[baseData.length - 1], databaseManager, 38, 12, "green");
 		this.mapID = 1;
 	}
 	
@@ -166,32 +166,23 @@ public class Game extends State {
 		String[] data = Tools.loadFromFile(playerUrl);
 		int ID = Integer.parseInt(data[0].split(",")[0]);
 		int mapX = 0, mapY = 0;
+		int startX = 0, startY = 0;
 		for (Object[] base : baseData) {
 			int playerID = Integer.parseInt((String)base[1]);
 			String type = (String)base[3];
+			mapX = Integer.parseInt((String)base[4]);
+			mapY = Integer.parseInt((String)base[5]);
 			if (playerID == ID) {
 				// Create each of the players bases
 				if (type.equals("Homebase")) {
 					mapID = Integer.parseInt((String)base[2]);
-					mapX = Integer.parseInt((String)base[4]);
-					mapY = Integer.parseInt((String)base[5]);
+					startX = Integer.parseInt((String)base[4]);
+					startY = Integer.parseInt((String)base[5]);
 				}
-			}
-		}
-		
-		for (Object[] base : baseData) {
-			int playerID = Integer.parseInt((String)base[1]);
-			int tempMapID = Integer.parseInt((String)base[2]);
-			if (mapID == tempMapID) {
-				if (playerID == ID) {
-					entities.add(new Base(base, databaseManager, -(mapX * Map.TILE_WIDTH), -(mapY * Map.TILE_HEIGHT), "green")); 
-				} else {
-					if (playerID == 0) {
-						entities.add(new Base(base, databaseManager, -(mapX * Map.TILE_WIDTH), -(mapY * Map.TILE_HEIGHT), "yellow"));
-					} else {
-						entities.add(new Base(base, databaseManager, -(mapX * Map.TILE_WIDTH), -(mapY * Map.TILE_HEIGHT), "red"));
-					}
-				}
+				entities.add(new Base(base, databaseManager, mapX, mapY, "green"));
+			} else {
+				if (playerID == 0)  entities.add(new Base(base, databaseManager, mapX, mapY, "yellow"));
+				else				entities.add(new Base(base, databaseManager, mapX, mapY, "red"));
 			}
 		}
 		
@@ -201,8 +192,10 @@ public class Game extends State {
 			int tempPlayerID = Integer.parseInt((String)map[1]);
 			if (tempID == mapID) {
 				if (tempPlayerID == ID) {
-					this.map = new Map(databaseManager, mapID ,mapX, mapY);
-					this.map.add(entities);
+					this.map = new Map(databaseManager, mapID ,startX, startY);
+					for (Entity e : entities) {
+						this.map.add(e);
+					}
 				}
 			}
 		}
@@ -210,7 +203,7 @@ public class Game extends State {
 		for (Object[] player : playerData) {
 			if (ID == Integer.parseInt((String)player[0])) {
 				this.playerID = ID;
-				map.setPlayer(new Player(ID, Integer.parseInt((String)player[1]), mapX, mapY));
+				map.setPlayer(new Player(ID, Integer.parseInt((String)player[1]), startX, startY));
 			}
 		}
 	}
