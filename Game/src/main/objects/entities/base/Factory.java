@@ -36,12 +36,12 @@ public class Factory extends Entity implements EventListener {
 	private Label timeRemaining;
 	private Base base;
 	
-	public Factory(Base b, boolean owned, int level, int baseID, int playerID, int mapID, DatabaseManager dm, int x, int y, int xOffset, int yOffset, int width, int height, String type) {
+	public Factory(Base b, int level, int baseID, int playerID, int mapID, DatabaseManager dm, int x, int y, int xOffset, int yOffset, int width, int height, String type) {
 		super(x, y, width, height, Tools.getImage("/entities/base/" + type));
 		this.playerID = playerID;
 		this.mapID = mapID;
 		this.baseID = baseID;
-		this.owned = owned;
+		this.owned = b.isOwned();
 		this.dm = dm;
 		this.type = type;
 		xPos = x;

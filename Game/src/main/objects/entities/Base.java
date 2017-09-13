@@ -68,6 +68,7 @@ public class Base extends Entity implements EventListener {
 	}
 
 	private void setup(String flag) {
+		this.owned = flag.equals("green");
 		String[] baseData = Tools.loadFromResource("/gameData/basetypes.gme");
 		for (String s : baseData) { 											// For each line in the file
 			String[] parts = s.split(";");										// Split it into 2 parts, the base type and the data
@@ -84,13 +85,13 @@ public class Base extends Entity implements EventListener {
 					String[] garageData = dataParts[2].split("/");
 					entities.add(garage = new Garage(this, Integer.parseInt(garageData[0]), Integer.parseInt(garageData[1]), type));
 					String[] factoryData = dataParts[3].split("/");
-					entities.add(new Factory(this, (flag.equals("green")), Integer.parseInt((String)data[7]), baseID, playerID, mapID, dm, Integer.parseInt(factoryData[2]), Integer.parseInt(factoryData[3]), Integer.parseInt(factoryData[4]), Integer.parseInt(factoryData[5]), Integer.parseInt(factoryData[0]), Integer.parseInt(factoryData[1]), "Steel"));
+					entities.add(new Factory(this, Integer.parseInt((String)data[7]), baseID, playerID, mapID, dm, Integer.parseInt(factoryData[2]), Integer.parseInt(factoryData[3]), Integer.parseInt(factoryData[4]), Integer.parseInt(factoryData[5]), Integer.parseInt(factoryData[0]), Integer.parseInt(factoryData[1]), "Steel"));
 					factoryData = dataParts[4].split("/");
-					entities.add(new Factory(this, (flag.equals("green")), Integer.parseInt((String)data[8]), baseID, playerID, mapID, dm, Integer.parseInt(factoryData[2]), Integer.parseInt(factoryData[3]), Integer.parseInt(factoryData[4]), Integer.parseInt(factoryData[5]), Integer.parseInt(factoryData[0]), Integer.parseInt(factoryData[1]), "Carbon"));
+					entities.add(new Factory(this, Integer.parseInt((String)data[8]), baseID, playerID, mapID, dm, Integer.parseInt(factoryData[2]), Integer.parseInt(factoryData[3]), Integer.parseInt(factoryData[4]), Integer.parseInt(factoryData[5]), Integer.parseInt(factoryData[0]), Integer.parseInt(factoryData[1]), "Carbon"));
 					factoryData = dataParts[5].split("/");
-					entities.add(new Factory(this, (flag.equals("green")), Integer.parseInt((String)data[9]), baseID, playerID, mapID, dm, Integer.parseInt(factoryData[2]), Integer.parseInt(factoryData[3]), Integer.parseInt(factoryData[4]), Integer.parseInt(factoryData[5]), Integer.parseInt(factoryData[0]), Integer.parseInt(factoryData[1]), "Fuel"));
+					entities.add(new Factory(this, Integer.parseInt((String)data[9]), baseID, playerID, mapID, dm, Integer.parseInt(factoryData[2]), Integer.parseInt(factoryData[3]), Integer.parseInt(factoryData[4]), Integer.parseInt(factoryData[5]), Integer.parseInt(factoryData[0]), Integer.parseInt(factoryData[1]), "Fuel"));
 					factoryData = dataParts[6].split("/");
-					entities.add(new Factory(this, (flag.equals("green")), Integer.parseInt((String)data[6]), baseID, playerID, mapID, dm, Integer.parseInt(factoryData[2]), Integer.parseInt(factoryData[3]), Integer.parseInt(factoryData[4]), Integer.parseInt(factoryData[5]), Integer.parseInt(factoryData[0]), Integer.parseInt(factoryData[1]), "Concrete"));
+					entities.add(new Factory(this, Integer.parseInt((String)data[6]), baseID, playerID, mapID, dm, Integer.parseInt(factoryData[2]), Integer.parseInt(factoryData[3]), Integer.parseInt(factoryData[4]), Integer.parseInt(factoryData[5]), Integer.parseInt(factoryData[0]), Integer.parseInt(factoryData[1]), "Concrete"));
 					String[] flagData = dataParts[1].split("/");
 					String[] flagPoleData = dataParts[0].split("/");
 					entities.add(this.flag = (Flag) new Flag(Integer.parseInt(flagData[0]), Integer.parseInt(flagData[1]), Integer.parseInt(flagPoleData[0]), Integer.parseInt(flagPoleData[1]), flag, 0).play());
@@ -100,13 +101,13 @@ public class Base extends Entity implements EventListener {
 					garageData = dataParts[2].split("/");
 					entities.add(garage = new Garage(this, Integer.parseInt(garageData[0]), Integer.parseInt(garageData[1]), type));
 					factoryData = dataParts[4].split("/");
-					entities.add(new Factory(this, (flag.equals("green")), Integer.parseInt((String)data[7]), baseID, playerID, mapID, dm, Integer.parseInt(factoryData[2]), Integer.parseInt(factoryData[3]), Integer.parseInt(factoryData[4]), Integer.parseInt(factoryData[5]), Integer.parseInt(factoryData[0]), Integer.parseInt(factoryData[1]), "Steel"));
+					entities.add(new Factory(this, Integer.parseInt((String)data[7]), baseID, playerID, mapID, dm, Integer.parseInt(factoryData[2]), Integer.parseInt(factoryData[3]), Integer.parseInt(factoryData[4]), Integer.parseInt(factoryData[5]), Integer.parseInt(factoryData[0]), Integer.parseInt(factoryData[1]), "Steel"));
 					factoryData = dataParts[5].split("/");
-					entities.add(new Factory(this, (flag.equals("green")), Integer.parseInt((String)data[8]), baseID, playerID, mapID, dm, Integer.parseInt(factoryData[2]), Integer.parseInt(factoryData[3]), Integer.parseInt(factoryData[4]), Integer.parseInt(factoryData[5]), Integer.parseInt(factoryData[0]), Integer.parseInt(factoryData[1]), "Carbon"));
+					entities.add(new Factory(this, Integer.parseInt((String)data[8]), baseID, playerID, mapID, dm, Integer.parseInt(factoryData[2]), Integer.parseInt(factoryData[3]), Integer.parseInt(factoryData[4]), Integer.parseInt(factoryData[5]), Integer.parseInt(factoryData[0]), Integer.parseInt(factoryData[1]), "Carbon"));
 					factoryData = dataParts[6].split("/");
-					entities.add(new Factory(this, (flag.equals("green")), Integer.parseInt((String)data[9]), baseID, playerID, mapID, dm, Integer.parseInt(factoryData[2]), Integer.parseInt(factoryData[3]), Integer.parseInt(factoryData[4]), Integer.parseInt(factoryData[5]), Integer.parseInt(factoryData[0]), Integer.parseInt(factoryData[1]), "Fuel"));
+					entities.add(new Factory(this, Integer.parseInt((String)data[9]), baseID, playerID, mapID, dm, Integer.parseInt(factoryData[2]), Integer.parseInt(factoryData[3]), Integer.parseInt(factoryData[4]), Integer.parseInt(factoryData[5]), Integer.parseInt(factoryData[0]), Integer.parseInt(factoryData[1]), "Fuel"));
 					factoryData = dataParts[7].split("/");
-					entities.add(new Factory(this, (flag.equals("green")), Integer.parseInt((String)data[6]), baseID, playerID, mapID, dm, Integer.parseInt(factoryData[2]), Integer.parseInt(factoryData[3]), Integer.parseInt(factoryData[4]), Integer.parseInt(factoryData[5]), Integer.parseInt(factoryData[0]), Integer.parseInt(factoryData[1]), "Concrete"));
+					entities.add(new Factory(this, Integer.parseInt((String)data[6]), baseID, playerID, mapID, dm, Integer.parseInt(factoryData[2]), Integer.parseInt(factoryData[3]), Integer.parseInt(factoryData[4]), Integer.parseInt(factoryData[5]), Integer.parseInt(factoryData[0]), Integer.parseInt(factoryData[1]), "Concrete"));
 					flagData = dataParts[1].split("/");
 					flagPoleData = dataParts[0].split("/");
 					entities.add(this.flag = (Flag) new Flag(Integer.parseInt(flagData[0]), Integer.parseInt(flagData[1]), Integer.parseInt(flagPoleData[0]), Integer.parseInt(flagPoleData[1]), flag, 0).play());
@@ -234,6 +235,10 @@ public class Base extends Entity implements EventListener {
 				((EventListener) e).onEvent(event);
 			}
 		}
+	}
+
+	public boolean isOwned() {
+		return owned;
 	}
 
 }

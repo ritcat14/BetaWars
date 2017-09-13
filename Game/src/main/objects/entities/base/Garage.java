@@ -23,12 +23,14 @@ public class Garage extends Entity implements EventListener {
 	private BufferedImage cover;
 	private int xPos, yPos;
 	protected PopupBox box;
+	protected boolean owned;
 
 	public Garage(Base base, int x, int y, String type) {
 		super(x, y, Tools.getImage("/entities/base/garage" + type));
 		cover = Tools.getImage("/entities/base/garage" + type + "Cover");
 		xPos = x;
 		yPos = y;
+		this.owned = base.isOwned();
 		
 		String[] garageData = Tools.loadFromResource("/gameData/garageInfo.gme");
 		String[] data = null;
@@ -140,7 +142,7 @@ public class Garage extends Entity implements EventListener {
 
 	@Override
 	public void onEvent(Event event) {
-		box.onEvent(event);
+		if (owned) box.onEvent(event);
 	}
 
 }

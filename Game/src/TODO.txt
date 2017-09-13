@@ -1,0 +1,11 @@
+1. Fix other bases garage menu - DONE
+2. Add info for factory buttons
+3. Implement cost
+	- Make upgrades cost Concrete
+	- Make production cost Titanium
+4. Implement vehicle creation
+5. Implement vehicle costs
+6. Implement grouping of vehicles
+7. Implement vehicle movement
+8. Add all remaining tables to database
+9. Work out how to access database remotely, and implement multiple connections
