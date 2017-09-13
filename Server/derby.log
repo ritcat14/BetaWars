@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Wed Sep 13 11:15:24 BST 2017:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.13.1.1 - (1765088): instance a816c00e-015e-7abc-7589-000006cabd98 
+Wed Sep 13 11:42:15 BST 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.13.1.1 - (1765088): instance a816c00e-015e-7ad5-06df-000006cab858 
 on database directory /Users/Phoebe/Documents/Game/GameDB with class loader sun.misc.Launcher$AppClassLoader@4554617c 
 Loaded from file:/Users/Phoebe/git/BetaWars/Server/lib/derby.jar
 java.vendor=Oracle Corporation

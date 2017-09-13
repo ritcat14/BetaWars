@@ -1,0 +1,16 @@
+STEEL
+0:Steel Mill:Upgrade:to Level
+1:1 Hour:Steel:Production
+2:15 Hour:Steel:Production
+CONCRETE
+3:Concrete Mill:Upgrade:to Level
+4:1 Hour:Concrete:Production
+5:15 Hour:Concrete:Production
+FUEL
+6:Steel Mill:Upgrade:to Level
+7:1 Hour:Fuel:Production
+8:15 Hour:Fuel:Production
+CARBON
+9:Carbon Mill:Upgrade:to Level
+10:1 Hour:Carbon:Production
+11:15 Hour:Carbon:Production
