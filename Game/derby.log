@@ -1,13 +1,13 @@
 ----------------------------------------------------------------
-Thu Aug 31 00:35:26 BST 2017:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.13.1.1 - (1765088): instance a816c00e-015e-357f-e0bd-00001d902898 
-on database directory C:\Users\ritca\eclipse-workspace\Server\GameDB with class loader sun.misc.Launcher$AppClassLoader@73d16e93 
-Loaded from file://MEDIASERVER-PC/kris/Documents/GitHub/BetaWars/Game/lib/derby.jar
+Wed Sep 13 11:03:31 BST 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.13.1.1 - (1765088): instance a816c00e-015e-7ab1-9236-000006d05e48 
+on database directory /Users/Phoebe/Documents/Game/GameDB with class loader sun.misc.Launcher$AppClassLoader@4554617c 
+Loaded from file:/Users/Phoebe/git/BetaWars/Game/lib/derby.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_141-b15
-user.dir=\\MEDIASERVER-PC\kris\Documents\GitHub\BetaWars\Game
-os.name=Windows 10
-os.arch=amd64
-os.version=10.0
+java.runtime.version=1.8.0_111-b14
+user.dir=/Users/Phoebe/git/BetaWars/Game
+os.name=Mac OS X
+os.arch=x86_64
+os.version=10.11.6
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''

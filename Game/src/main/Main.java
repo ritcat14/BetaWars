@@ -19,6 +19,9 @@ public class Main {
 	private static int HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height;
 	
 	public Main() {
+		if (OSUtils.isMac()) {
+			HEIGHT -= 20;
+		}
 		databaseManager = new DatabaseManager();
 		threadHandler = new ThreadHandler();
 		stateHandler = new StateHandler(threadHandler, databaseManager);
@@ -39,7 +42,7 @@ public class Main {
         Main m = new Main();
         m.frame = new JFrame("Game");
         m.frame.setResizable(false);
-        m.frame.setUndecorated(true);
+        if (OSUtils.isWindows()) m.frame.setUndecorated(true);
         m.frame.add(m.renderer.getCanvas());
         
         m.frame.pack();

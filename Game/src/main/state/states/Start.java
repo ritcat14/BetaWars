@@ -27,7 +27,7 @@ public class Start extends State {
 	
 	private Panel mainPanel;
 	private TextBox nameBox;
-	private String gameFolderUrl = System.getProperty("user.home") + "\\Game\\";
+	private String gameFolderUrl = System.getProperty("user.home") + "/Documents/Game/";
 	private String playerUrl = gameFolderUrl + "Player.txt";
 	
 	public Start(ThreadHandler th, DatabaseManager databaseManager) {

@@ -37,7 +37,7 @@ public class Game extends State {
 	
 	private boolean paused = false;
 
-	private String gameFolderUrl = System.getProperty("user.home") + "\\Game\\";
+	private String gameFolderUrl = System.getProperty("user.home") + "/Documents/Game/";
 	private String playerUrl = gameFolderUrl + "Player.txt";
 	
 	private Object[][] playerData;
