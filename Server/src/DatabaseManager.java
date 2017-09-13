@@ -5,7 +5,7 @@ import java.util.List;
 
 public class DatabaseManager implements Runnable {
 	
-	private final String DB_URL = "jdbc:derby:C:\\Users\\ritca\\eclipse-workspace\\Server\\GameDB;create=true";
+	private final String DB_URL = "jdbc:derby:" + System.getProperty("user.home") + "/Documents/Game/GameDB;create=true";
     private Connection conn;
     private Statement stmt;
     private Thread t;
@@ -20,7 +20,7 @@ public class DatabaseManager implements Runnable {
 		running = true;
 		t.start();
 		initFields();
-		boolean created = Tools.exists("C:\\Users\\ritca\\eclipse-workspace\\Server\\GameDB");
+		boolean created = Tools.exists(System.getProperty("user.home") + "/Documents/Game/GameDB");
 		if (!created) create();
 		else {
 			openDatabase();
